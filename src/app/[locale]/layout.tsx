@@ -6,8 +6,38 @@ import { locales } from '@/i18n/config';
 import '@/app/globals.css';
 
 export const metadata: Metadata = {
-  title: 'Antguru — мастера Узбекистана',
-  description: 'Найдите проверенного специалиста в Узбекистане. RU / UZ.'
+  metadataBase: new URL('https://antguru.uz'),
+  title: {
+    default: 'Antguru — найди мастера в Узбекистане',
+    template: '%s · Antguru'
+  },
+  description:
+    '5 000+ проверенных специалистов в Узбекистане. Опишите задачу — получите отклики мастеров за 30 минут. Бесплатно для клиентов. RU / UZ.',
+  applicationName: 'Antguru',
+  openGraph: {
+    type: 'website',
+    siteName: 'Antguru',
+    title: 'Antguru — мастера Узбекистана',
+    description:
+      'Маркетплейс проверенных мастеров: ремонт, репетиторы, красота, IT, авто и многое другое. Ташкент, Самарканд, Бухара и другие города.'
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Antguru — мастера Узбекистана'
+  },
+  alternates: {
+    languages: {
+      ru: '/ru',
+      uz: '/uz'
+    }
+  },
+  robots: { index: true, follow: true }
+};
+
+export const viewport = {
+  themeColor: '#10b981',
+  width: 'device-width',
+  initialScale: 1
 };
 
 export function generateStaticParams() {
@@ -26,7 +56,7 @@ export default async function LocaleLayout({
   const messages = await getMessages();
   return (
     <html lang={locale}>
-      <body>
+      <body className="bg-white text-gray-900 antialiased">
         <NextIntlClientProvider locale={locale} messages={messages}>
           {children}
         </NextIntlClientProvider>
