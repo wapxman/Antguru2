@@ -2,12 +2,14 @@
 
 Аналог **Profi.ru** для Узбекистана — маркетплейс услуг (RU/UZ).
 
-👉 **Перед запуском обязательно прочитай [SETUP.md](./SETUP.md)** — там список того, что нужно сделать тебе (Supabase, SMS-провайдер).
+📖 Доки:
+- **[SETUP.md](./SETUP.md)** — настройка Supabase и SMS-провайдера
+- **[DEPLOY.md](./DEPLOY.md)** — деплой на Vercel
 
 ## Стек
 
 - **Next.js 14** (App Router) + **TypeScript**
-- **TailwindCSS** для стилей
+- **TailwindCSS**
 - **Supabase** — БД + Auth (телефон + OTP) + Storage
 - **next-intl** — двуязычный интерфейс (RU/UZ)
 - **lucide-react** — иконки
@@ -17,21 +19,21 @@
 ```
 src/
 ├── app/
-│   └── [locale]/                 # i18n routing
+│   └── [locale]/
 │       ├── layout.tsx
 │       ├── page.tsx              # главная
 │       └── auth/
 │           ├── login/page.tsx    # ввод телефона
 │           └── verify/page.tsx   # OTP-код
-├── modules/                      # все фичи разнесены по модулям
+├── modules/
 │   ├── auth/                     # регистрация по телефону
-│   ├── catalog/                  # категории услуг
+│   ├── catalog/                  # категории
 │   ├── cities/                   # выбор города
-│   ├── home/                     # секции главной (Hero, HowItWorks, Stats)
+│   ├── home/                     # секции главной
 │   ├── i18n/                     # переключатель языка
 │   └── layout/                   # Header, Footer
 ├── lib/
-│   ├── supabase/                 # клиенты (browser + server)
+│   ├── supabase/                 # client + server
 │   └── utils/
 ├── i18n/                         # конфиг next-intl
 ├── messages/                     # ru.json, uz.json
@@ -42,11 +44,11 @@ supabase/
     └── 0001_init.sql             # все таблицы + RLS + триггеры
 ```
 
-## Быстрый старт
+## Локальный запуск
 
 ```bash
 cp .env.example .env.local
-# впиши свои Supabase ключи
+# впиши ключи Supabase
 npm install
 npm run dev
 ```
@@ -55,9 +57,4 @@ npm run dev
 
 ## Принцип масштабирования
 
-Каждая фича = отдельная папка в `src/modules/`. Внутри:
-- `*.tsx` — React-компоненты
-- `api.ts` — обращения к Supabase
-- `*.ts` — утилиты, типы, данные
-
-Так новые модули (orders, chat, payments, reviews) добавляются без переписывания старого.
+Каждая фича = отдельная папка в `src/modules/`. Новые модули (orders, chat, payments, reviews) добавляются без переписывания старого.

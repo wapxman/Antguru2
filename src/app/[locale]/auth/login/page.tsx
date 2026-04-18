@@ -1,7 +1,9 @@
+import { setRequestLocale } from 'next-intl/server';
 import { Header } from '@/modules/layout/Header';
 import { LoginForm } from '@/modules/auth/LoginForm';
 
-export default function LoginPage() {
+export default function LoginPage({ params: { locale } }: { params: { locale: string } }) {
+  setRequestLocale(locale);
   return (
     <>
       <Header />

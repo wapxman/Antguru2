@@ -1,11 +1,15 @@
+import { setRequestLocale } from 'next-intl/server';
 import { Header } from '@/modules/layout/Header';
 import { VerifyForm } from '@/modules/auth/VerifyForm';
 
 export default function VerifyPage({
+  params: { locale },
   searchParams
 }: {
+  params: { locale: string };
   searchParams: { phone?: string };
 }) {
+  setRequestLocale(locale);
   const phone = searchParams.phone || '';
   return (
     <>
