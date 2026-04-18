@@ -1,17 +1,77 @@
 export type CategoryDef = {
   slug: string;
-  emoji: string;
-  /** key in messages/Categories */
+  /** key inside messages/<locale>.json → Categories */
   key: string;
+  /** lucide-react icon name (used until admin uploads custom icon) */
+  icon: string;
+  /** Tailwind gradient classes for the icon background */
+  gradient: string;
+  /** Tailwind colored drop-shadow */
+  shadow: string;
+  /** When admin uploads a custom icon — its URL goes here, takes priority */
+  imageUrl?: string;
 };
 
+/**
+ * Apple-style category palette — iOS system colors.
+ * When admin panel lands, this can be replaced with data from `categories` table:
+ *   imageUrl ← public URL from Supabase Storage
+ */
 export const CATEGORIES: CategoryDef[] = [
-  { slug: 'repair',   emoji: '🛠', key: 'repair' },
-  { slug: 'tutors',   emoji: '📚', key: 'tutors' },
-  { slug: 'beauty',   emoji: '💄', key: 'beauty' },
-  { slug: 'it',       emoji: '💻', key: 'it' },
-  { slug: 'auto',     emoji: '🚗', key: 'auto' },
-  { slug: 'cleaning', emoji: '🏠', key: 'cleaning' },
-  { slug: 'events',   emoji: '🎉', key: 'events' },
-  { slug: 'health',   emoji: '🩺', key: 'health' }
+  {
+    slug: 'repair',
+    key: 'repair',
+    icon: 'Wrench',
+    gradient: 'from-[#FFB340] to-[#FF7B00]',
+    shadow: 'shadow-[0_8px_20px_-4px_rgba(255,123,0,0.45)]'
+  },
+  {
+    slug: 'tutors',
+    key: 'tutors',
+    icon: 'BookOpen',
+    gradient: 'from-[#64D2FF] to-[#0A84FF]',
+    shadow: 'shadow-[0_8px_20px_-4px_rgba(10,132,255,0.45)]'
+  },
+  {
+    slug: 'beauty',
+    key: 'beauty',
+    icon: 'Sparkles',
+    gradient: 'from-[#FF6B9D] to-[#FF2D55]',
+    shadow: 'shadow-[0_8px_20px_-4px_rgba(255,45,85,0.45)]'
+  },
+  {
+    slug: 'it',
+    key: 'it',
+    icon: 'Code2',
+    gradient: 'from-[#BF5AF2] to-[#5E5CE6]',
+    shadow: 'shadow-[0_8px_20px_-4px_rgba(94,92,230,0.45)]'
+  },
+  {
+    slug: 'auto',
+    key: 'auto',
+    icon: 'Car',
+    gradient: 'from-[#FF6961] to-[#FF3B30]',
+    shadow: 'shadow-[0_8px_20px_-4px_rgba(255,59,48,0.45)]'
+  },
+  {
+    slug: 'cleaning',
+    key: 'cleaning',
+    icon: 'Droplets',
+    gradient: 'from-[#64D2FF] to-[#30B0C7]',
+    shadow: 'shadow-[0_8px_20px_-4px_rgba(48,176,199,0.45)]'
+  },
+  {
+    slug: 'events',
+    key: 'events',
+    icon: 'PartyPopper',
+    gradient: 'from-[#FFD60A] to-[#FF9F0A]',
+    shadow: 'shadow-[0_8px_20px_-4px_rgba(255,159,10,0.45)]'
+  },
+  {
+    slug: 'health',
+    key: 'health',
+    icon: 'HeartPulse',
+    gradient: 'from-[#5BE9A6] to-[#34C759]',
+    shadow: 'shadow-[0_8px_20px_-4px_rgba(52,199,89,0.45)]'
+  }
 ];
