@@ -1,0 +1,51 @@
+{
+  "Common": {
+    "appName": "Antguru",
+    "tagline": "Oʻzbekistondagi ustani toping",
+    "search": "Qidirish",
+    "city": "Shahar",
+    "login": "Kirish",
+    "becomeSpecialist": "Mutaxassis boʻlish"
+  },
+  "Home": {
+    "heroTitle": "Tasdiqlangan mutaxassisni toping",
+    "heroSubtitle": "Oʻzbekiston boʻylab minglab ustalar — izoh va reytingga qarab tanlang",
+    "searchPlaceholder": "Sizga qanday xizmat kerak?",
+    "popularCategories": "Mashhur toifalar",
+    "howItWorks": "Qanday ishlaydi",
+    "step1Title": "Vazifani yozing",
+    "step1Text": "Nima kerakligini yozing",
+    "step2Title": "Takliflarni oling",
+    "step2Text": "Ustalar oʻzlari yozadi",
+    "step3Title": "Eng yaxshisini tanlang",
+    "step3Text": "Izoh va reyting boʻyicha",
+    "statSpecialists": "usta",
+    "statRegions": "viloyat",
+    "statOrders": "buyurtma"
+  },
+  "Auth": {
+    "loginTitle": "Kirish va roʻyxatdan oʻtish",
+    "loginSubtitle": "Telefon raqamingizni kiriting — kod yuboramiz",
+    "phoneLabel": "Telefon raqami",
+    "sendCode": "Kodni olish",
+    "verifyTitle": "Kodni kiriting",
+    "verifySubtitle": "Kod {phone} raqamiga yuborildi",
+    "codeLabel": "SMS kodi",
+    "verify": "Tasdiqlash",
+    "resend": "Qayta yuborish",
+    "resendIn": "{seconds} soniyadan keyin qayta",
+    "consent": "«Kodni olish»ni bosish bilan siz shartlarga rozisiz",
+    "errorPhone": "Toʻgʻri +998 raqamini kiriting",
+    "errorCode": "Kod 6 raqamdan iborat"
+  },
+  "Categories": {
+    "repair": "Taʼmirlash",
+    "tutors": "Repetitorlar",
+    "beauty": "Goʻzallik",
+    "it": "IT va veb",
+    "auto": "Avto",
+    "cleaning": "Tozalash",
+    "events": "Bayramlar",
+    "health": "Salomatlik"
+  }
+}

@@ -1,50 +1,63 @@
 # Antguru2
 
-Аналог **Profi.ru** для Узбекистана — маркетплейс услуг, где клиенты находят проверенных специалистов (репетиторов, мастеров, врачей, мастеров красоты, IT и т.д.), а исполнители получают заказы.
+Аналог **Profi.ru** для Узбекистана — маркетплейс услуг (RU/UZ).
 
-Платформа двуязычная: **русский** и **ўзбекча**.
+👉 **Перед запуском обязательно прочитай [SETUP.md](./SETUP.md)** — там список того, что нужно сделать тебе (Supabase, SMS-провайдер).
 
----
+## Стек
 
-## 🇷🇺 Кратко (RU)
+- **Next.js 14** (App Router) + **TypeScript**
+- **TailwindCSS** для стилей
+- **Supabase** — БД + Auth (телефон + OTP) + Storage
+- **next-intl** — двуязычный интерфейс (RU/UZ)
+- **lucide-react** — иконки
 
-- **Идея:** соединить клиентов и специалистов в Узбекистане в одном месте.
-- **Для клиентов:** оставить заявку → получить отклики → выбрать по рейтингу и отзывам.
-- **Для исполнителей:** профиль, портфолио, отзывы, доступ к заявкам.
-- **География:** Ташкент, Самарканд, Бухара, Наманган, Андижан и другие города.
-- **Языки интерфейса:** RU / UZ (переключение в один клик).
-- **Монетизация:** платный доступ к контактам клиентов + продвижение анкет.
+## Структура проекта (модульная)
 
-## 🇺🇿 Qisqacha (UZ)
+```
+src/
+├── app/
+│   └── [locale]/                 # i18n routing
+│       ├── layout.tsx
+│       ├── page.tsx              # главная
+│       └── auth/
+│           ├── login/page.tsx    # ввод телефона
+│           └── verify/page.tsx   # OTP-код
+├── modules/                      # все фичи разнесены по модулям
+│   ├── auth/                     # регистрация по телефону
+│   ├── catalog/                  # категории услуг
+│   ├── cities/                   # выбор города
+│   ├── home/                     # секции главной (Hero, HowItWorks, Stats)
+│   ├── i18n/                     # переключатель языка
+│   └── layout/                   # Header, Footer
+├── lib/
+│   ├── supabase/                 # клиенты (browser + server)
+│   └── utils/
+├── i18n/                         # конфиг next-intl
+├── messages/                     # ru.json, uz.json
+└── middleware.ts                 # routing локалей
 
-- **Gʻoya:** Oʻzbekistondagi mijozlar va mutaxassislarni bitta platformada birlashtirish.
-- **Mijozlar uchun:** ariza qoldirish → takliflarni olish → reyting va izohlarga qarab tanlash.
-- **Ijrochilar uchun:** profil, portfolio, izohlar, arizalarga kirish.
-- **Geografiya:** Toshkent, Samarqand, Buxoro, Namangan, Andijon va boshqa shaharlar.
-- **Interfeys tillari:** RU / UZ (bir bosishda almashtirish).
-- **Monetizatsiya:** mijoz kontaktlariga pullik kirish + anketalarni reklama qilish.
+supabase/
+└── migrations/
+    └── 0001_init.sql             # все таблицы + RLS + триггеры
+```
 
----
+## Быстрый старт
 
-## Категории услуг / Xizmatlar toifalari
+```bash
+cp .env.example .env.local
+# впиши свои Supabase ключи
+npm install
+npm run dev
+```
 
-- 🛠 Ремонт и строительство / Taʼmirlash va qurilish
-- 📚 Репетиторы / Repetitorlar
-- 💄 Красота и здоровье / Goʻzallik va salomatlik
-- 💻 IT и веб-разработка / IT va veb-ishlab chiqish
-- 🚗 Авто услуги / Avto xizmatlari
-- 🏠 Уборка и быт / Tozalash va maishiy xizmatlar
-- 🎉 Праздники и мероприятия / Bayramlar va tadbirlar
+Откроется http://localhost:3000 → редирект на `/ru`.
 
-## Технологический стек (план)
+## Принцип масштабирования
 
-- **Frontend:** Next.js + TypeScript + Tailwind
-- **Backend:** Node.js / NestJS
-- **БД:** PostgreSQL
-- **Auth:** SMS-код (Eskiz/Playmobile), Google
-- **Платежи:** Click, Payme, Uzum
-- **Хостинг:** Vercel + Supabase
+Каждая фича = отдельная папка в `src/modules/`. Внутри:
+- `*.tsx` — React-компоненты
+- `api.ts` — обращения к Supabase
+- `*.ts` — утилиты, типы, данные
 
-## Статус
-
-🚧 На стадии проектирования. PR и идеи приветствуются.
+Так новые модули (orders, chat, payments, reviews) добавляются без переписывания старого.
